@@ -1,0 +1,1 @@
+alter table movieapp_movies add price int;
