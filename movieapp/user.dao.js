@@ -9,7 +9,13 @@ class UserDAO {
     }
 
     async login(email,password){
-        const result = await pool.query("select id,email,role from movieapp_users where email = ? and password = ?",[email,password]);    
+        const result = await pool.query("select id,name,email,role from movieapp_users where email = ? and password = ?",[email,password]);    
+        return result[0].length>0 ? result[0][0]: null;
+    }
+
+
+    async findByEmail(email){
+        const result = await pool.query("select id,name,email,role,password from movieapp_users where email = ? ",[email]);    
         return result[0].length>0 ? result[0][0]: null;
     }
 
